@@ -24,9 +24,23 @@ std::vector <User> UserFile::loadUsersFromFile()
 	}
 	return users;
 }
+*/
 
 void UserFile::saveUserToFile(User user)
 {
+	CMarkup xml;
+	xml.AddElem("USERS");
+	xml.IntoElem();
+	xml.AddElem("USER");
+	xml.IntoElem();
+	xml.AddElem("USERID", user.getUserId());
+	xml.AddElem("LOGIN", user.getLogin());
+	xml.AddElem("PASSWORD", user.getPassword());
+	xml.AddElem("NAME", user.getName());
+	xml.AddElem("SURNAME", user.getSurname());
+	xml.Save("sample.xml");
+
+	/*
 	std::string line = "";
 	fstream textFile;
 	textFile.open(usersFileName.c_str(), ios::app);
@@ -47,8 +61,10 @@ void UserFile::saveUserToFile(User user)
 	}
 	else
 		std::cout << "Nie udalo sie otworzyc pliku " << usersFileName << " i zapisac w nim danych." << endl;
+	*/
 }
 
+/*
 void UserFile::updateUserInFile(User user)
 {
 	fstream textFile, temp;
