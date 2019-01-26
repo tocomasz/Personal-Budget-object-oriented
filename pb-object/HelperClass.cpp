@@ -14,6 +14,25 @@ void HelperClass::pauseProgram()
 	return;
 }
 
+std::string HelperClass::convertStringToSentenceCase(std::string input)
+{
+	if (!input.empty())
+	{
+		transform(input.begin(), input.end(), input.begin(), ::tolower);
+		input[0] = toupper(input[0]);
+	}
+	return input;
+}
+
+int HelperClass::stringToInt(std::string number)
+{
+	int intNumber;
+	std::istringstream iss(number);
+	iss >> intNumber;
+
+	return intNumber;
+}
+
 
 HelperClass::~HelperClass()
 {

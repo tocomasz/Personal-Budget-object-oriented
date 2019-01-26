@@ -8,6 +8,11 @@ PersonalBudget::PersonalBudget(std::string USERSFILENAME, std::string INCOMESFIL
 
 }
 
+void PersonalBudget::registerUser()
+{
+	userManager.registerUser();
+}
+
 
 PersonalBudget::~PersonalBudget()
 {

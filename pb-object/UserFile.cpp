@@ -6,40 +6,54 @@ UserFile::UserFile(std::string USERSFILENAME)
 	:usersFileName(USERSFILENAME)
 {
 }
-/*
+
 std::vector <User> UserFile::loadUsersFromFile()
 {
 	std::vector <User> users;
-	std::string line;
 	User user;
-	fstream textFile;
-	textFile.open(usersFileName.c_str(), ios::in);
-	if (textFile.good() == true)
+	CMarkup xml;
+	xml.Load(usersFileName.c_str());
+
+	xml.FindElem();
+	xml.IntoElem();
+	while (xml.FindElem("USER"))
 	{
-		while (getline(textFile, line))
-		{
-			user = divideLineWithSeparatorsIntoUserData(line);
-			users.push_back(user);
-		}
-		textFile.close();
+		xml.IntoElem();
+		xml.FindElem("USERID");
+		user.setUserId(HelperClass::stringToInt(xml.GetData()));
+		xml.FindElem("LOGIN");
+		user.setLogin(xml.GetData());
+		xml.FindElem("PASSWORD");
+		user.setPassword(xml.GetData());
+		xml.FindElem("NAME");
+		user.setName(xml.GetData());
+		xml.FindElem("SURNAME");
+		user.setSurname(xml.GetData());
+		xml.OutOfElem();
+		users.push_back(user);
 	}
 	return users;
 }
-*/
 
-void UserFile::saveUserToFile(User user)
+
+void UserFile::saveAllUsersToFile(std::vector<User> users)
 {
 	CMarkup xml;
 	xml.AddElem("USERS");
 	xml.IntoElem();
-	xml.AddElem("USER");
-	xml.IntoElem();
-	xml.AddElem("USERID", user.getUserId());
-	xml.AddElem("LOGIN", user.getLogin());
-	xml.AddElem("PASSWORD", user.getPassword());
-	xml.AddElem("NAME", user.getName());
-	xml.AddElem("SURNAME", user.getSurname());
-	xml.Save("sample.xml");
+	for (std::vector <User>::iterator itr = users.begin(), end = users.end(); itr != end; itr++)
+	{
+		xml.AddElem("USER");
+		xml.IntoElem();
+		xml.AddElem("USERID", itr->getUserId());
+		xml.AddElem("LOGIN", itr->getLogin());
+		xml.AddElem("PASSWORD", itr->getPassword());
+		xml.AddElem("NAME", itr->getName());
+		xml.AddElem("SURNAME", itr->getSurname());
+		xml.OutOfElem();
+	}
+
+	xml.Save(usersFileName.c_str());
 
 	/*
 	std::string line = "";

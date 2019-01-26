@@ -3,6 +3,8 @@
 UserManager::UserManager(std::string USERSFILENAME)
 	:userFile(USERSFILENAME)
 {
+	users = userFile.loadUsersFromFile();
+	loggedUserId = 0;
 }
 
 int UserManager::newUserId()
@@ -44,6 +46,18 @@ User UserManager::provideNewUserLoginCredentials()
 	getline(std::cin, password);
 	user.setPassword(password);
 
+	std::cout << "Podaj imie: ";
+	std::string name = "";
+	getline(std::cin, name);
+	name = HelperClass::convertStringToSentenceCase(name);
+	user.setName(name);
+
+	std::cout << "Podaj nazwisko: ";
+	std::string surname = "";
+	getline(std::cin, surname);
+	surname = HelperClass::convertStringToSentenceCase(surname);
+	user.setSurname(surname);
+
 	return user;
 }
 
@@ -52,7 +66,7 @@ void UserManager::registerUser()
 	User user = provideNewUserLoginCredentials();
 
 	users.push_back(user);
-	//userFile.saveUserToFile(user);
+	userFile.saveAllUsersToFile(users);
 
 	std::cout << std::endl << "Konto zalozono pomyslnie" << std::endl;
 	HelperClass::pauseProgram();

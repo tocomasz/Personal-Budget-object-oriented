@@ -7,6 +7,7 @@ class PersonalBudget
 	UserManager userManager;
 public:
 	PersonalBudget(std::string, std::string, std::string);
+	void registerUser();
 	~PersonalBudget();
 };
 
