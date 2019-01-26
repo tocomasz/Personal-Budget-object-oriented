@@ -1,6 +1,7 @@
 #include "UserManager.h"
 
-UserManager::UserManager(std::string a)
+UserManager::UserManager(std::string USERSFILENAME)
+	:userFile(USERSFILENAME)
 {
 }
 

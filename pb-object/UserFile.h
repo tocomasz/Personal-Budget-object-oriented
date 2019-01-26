@@ -8,7 +8,7 @@ class UserFile
 {
 	const std::string usersFileName;
 public:
-	UserFile();
+	UserFile(std::string);
 	void saveUserToFile(User);
 	//std::vector <User> loadUsersFromFile();
 	//void updateUserInFile(User);

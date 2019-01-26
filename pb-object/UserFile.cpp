@@ -2,7 +2,8 @@
 
 
 
-UserFile::UserFile()
+UserFile::UserFile(std::string USERSFILENAME)
+	:usersFileName(USERSFILENAME)
 {
 }
 /*
