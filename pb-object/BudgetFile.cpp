@@ -2,8 +2,10 @@
 
 
 
-BudgetFile::BudgetFile()
+BudgetFile::BudgetFile(std::string INCOMESFILENAME, std::string EXPENSEFILENAME)
+	:incomesFileName(INCOMESFILENAME), expensesFileName(EXPENSEFILENAME)
 {
+
 }
 
 

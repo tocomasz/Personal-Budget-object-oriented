@@ -2,8 +2,9 @@
 
 
 
-BudgetManager::BudgetManager()
+BudgetManager::BudgetManager(std::string INCOMESFILENAME, std::string EXPENSESFILENAME)
 {
+
 }
 
 
