@@ -112,7 +112,11 @@ void UserManager::logUserIn()
 void UserManager::changeUserPassword()
 {
 	if (loggedUserId == 0)
+	{
+		std::cout << "Brak zalogowanego uzytkownika" << std::endl;
 		return;
+	}
+
 	std::string newPassword = "";
 	std::cout << "Podaj nowe haslo: ";
 	getline(std::cin, newPassword);
@@ -123,7 +127,7 @@ void UserManager::changeUserPassword()
 		{
 			itr->setPassword(newPassword);
 			std::cout << "Haslo zostalo zmienione." << std::endl;
-			//userFile.updateUserInFile(*itr);
+			userFile.saveAllUsersToFile(users);
 			HelperClass::pauseProgram();
 		}
 	}

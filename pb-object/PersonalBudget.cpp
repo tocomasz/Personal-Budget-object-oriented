@@ -13,6 +13,21 @@ void PersonalBudget::registerUser()
 	userManager.registerUser();
 }
 
+void PersonalBudget::logUserIn()
+{
+	userManager.logUserIn();
+}
+
+void PersonalBudget::changeUserPassword()
+{
+	userManager.changeUserPassword();
+}
+
+void PersonalBudget::logUserOut()
+{
+	userManager.logUserOut();
+}
+
 
 PersonalBudget::~PersonalBudget()
 {

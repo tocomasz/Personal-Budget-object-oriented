@@ -8,6 +8,9 @@ class PersonalBudget
 public:
 	PersonalBudget(std::string, std::string, std::string);
 	void registerUser();
+	void logUserIn();
+	void changeUserPassword();
+	void logUserOut();
 	~PersonalBudget();
 };
 
