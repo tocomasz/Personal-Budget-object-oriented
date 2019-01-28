@@ -8,6 +8,7 @@ class Income
 	
 public:
 	Income();
+	void setDate(Date);
 	~Income();
 };
 

@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "HelperClass.h"
 class Date
 {
 	int year, month, day;
@@ -9,6 +10,7 @@ class Date
 public:
 	std::vector<int> monthDayCount;
 	Date(int, int, int);
+	Date(std::string);
 	Date();
 
 	~Date();

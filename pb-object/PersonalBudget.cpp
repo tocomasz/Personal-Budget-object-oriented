@@ -18,7 +18,7 @@ void PersonalBudget::logUserIn()
 	userManager.logUserIn();
 	if (userManager.isUserLoggedIn())
 	{
-		budgetManager = new BudgetManager(INCOMES_FILE_NAME, EXPENSES_FILE_NAME, userManager.getLoggedUserId())
+		budgetManager = new BudgetManager(INCOMES_FILE_NAME, EXPENSES_FILE_NAME, userManager.getLoggedUserId());
 	}
 }
 
@@ -34,7 +34,7 @@ void PersonalBudget::logUserOut()
 
 void PersonalBudget::addIncome()
 {
-	budgetManager->addNewIncomeRecord()
+	budgetManager->addNewIncomeRecord();
 }
 
 

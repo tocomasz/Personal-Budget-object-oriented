@@ -1,8 +1,11 @@
 #pragma once
-#include <iostream>
-#include <string>
 #include <algorithm>
+#include <cctype>
+#include <iostream>
 #include <sstream>
+#include <string>
+
+
 class HelperClass
 {
 public:
@@ -10,6 +13,9 @@ public:
 	static void pauseProgram();
 	static std::string convertStringToSentenceCase(std::string);
 	static int stringToInt(std::string);
+	static char loadCharacter();
+	static std::string loadLine();
+	static std::string intToString(int);
 	~HelperClass();
 };
 

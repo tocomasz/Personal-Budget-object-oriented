@@ -33,6 +33,42 @@ int HelperClass::stringToInt(std::string number)
 	return intNumber;
 }
 
+char HelperClass::loadCharacter()
+{
+	std::string input = "";
+	char ch = { 0 };
+	while (true)
+	{
+
+		getline(std::cin, input);
+
+		if (input.length() == 1)
+		{
+			ch = input[0];
+			break;
+		}
+		std::cout << "To nie jest pojedynczy znak. Wpisz ponownie." << std::endl;
+	}
+	return ch;
+}
+
+std::string HelperClass::loadLine()
+{
+	std::cin >> (std::ws);
+	std::string input = "";
+	getline(std::cin, input);
+	return input;
+}
+
+std::string HelperClass::intToString(int number)
+{
+	std::ostringstream ss;
+	ss << number;
+	std::string str = ss.str();
+	return str;
+}
+
+
 
 HelperClass::~HelperClass()
 {
