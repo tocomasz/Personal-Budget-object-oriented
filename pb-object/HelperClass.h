@@ -8,6 +8,7 @@
 
 class HelperClass
 {
+
 public:
 	HelperClass();
 	static void pauseProgram();
@@ -16,6 +17,8 @@ public:
 	static char loadCharacter();
 	static std::string loadLine();
 	static std::string intToString(int);
+	static double stringToDouble(std::string);
+	static std::string replaceCommaWithDot(std::string);
 	~HelperClass();
 };
 

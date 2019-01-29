@@ -68,6 +68,27 @@ std::string HelperClass::intToString(int number)
 	return str;
 }
 
+double HelperClass::stringToDouble(std::string number)
+{
+	number = replaceCommaWithDot(number);
+	double doubleNumber;
+	std::istringstream iss(number);
+	iss >> doubleNumber;
+
+	return doubleNumber;
+}
+
+std::string HelperClass::replaceCommaWithDot(std::string stringWithCommas)
+{
+	size_t pos = stringWithCommas.find(',');
+	while (pos != std::string::npos)
+	{
+		stringWithCommas.replace(pos, 1, ".");
+		pos = stringWithCommas.find(',');
+	}
+	return stringWithCommas;
+}
+
 
 
 HelperClass::~HelperClass()

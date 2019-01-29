@@ -7,8 +7,11 @@ Income BudgetManager::provideNewIncomeData()
 	Income income;
 	income.setDate(dateManager.pickDateMenu());
 	
-	
+	std::cout << "Wskaz czego dotyczy przychod: " << std::endl;
+	income.setItem(HelperClass::loadLine());
 
+	std::cout << "Podaj kwote:" << std::endl;
+	income.setAmount(HelperClass::stringToDouble(HelperClass::loadLine()));
 
 	return income;
 }
