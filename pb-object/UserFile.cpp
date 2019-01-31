@@ -1,7 +1,5 @@
 #include "UserFile.h"
 
-
-
 UserFile::UserFile(std::string USERSFILENAME)
 	:usersFileName(USERSFILENAME)
 {
@@ -51,7 +49,6 @@ void UserFile::saveAllUsersToFile(std::vector<User> users)
 		xml.AddElem("SURNAME", itr->getSurname());
 		xml.OutOfElem();
 	}
-
 	xml.Save(usersFileName.c_str());
 }
 

@@ -1,7 +1,5 @@
 #include "Income.h"
 
-
-
 Income::Income()
 {
 }
@@ -30,7 +28,6 @@ void Income::setUserId(int newId)
 {
 	userId = newId;
 }
-
 
 Income::~Income()
 {

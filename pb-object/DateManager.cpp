@@ -53,7 +53,6 @@ std::string DateManager::getCurrentDate()
 	return currentDateAsString;
 }
 
-
 DateManager::~DateManager()
 {
 }

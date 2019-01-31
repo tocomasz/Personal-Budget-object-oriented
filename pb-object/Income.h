@@ -6,7 +6,6 @@ class Income
 	Date date;
 	std::string item;
 	double amount;
-	
 public:
 	Income();
 	void setDate(Date);

@@ -1,7 +1,5 @@
 #include "HelperClass.h"
 
-
-
 HelperClass::HelperClass()
 {
 }
@@ -39,7 +37,6 @@ char HelperClass::loadCharacter()
 	char ch = { 0 };
 	while (true)
 	{
-
 		getline(std::cin, input);
 
 		if (input.length() == 1)
@@ -88,8 +85,6 @@ std::string HelperClass::replaceCommaWithDot(std::string stringWithCommas)
 	}
 	return stringWithCommas;
 }
-
-
 
 HelperClass::~HelperClass()
 {

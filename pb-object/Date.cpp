@@ -26,7 +26,6 @@ Date::Date(std::string dateAsString)
 Date::Date()
 	:year(2000), month(1), day(1)
 {
-
 }
 
 bool Date::isYearLeap()
