@@ -7,12 +7,13 @@ class Date
 
 	bool isYearLeap();
 
+
 public:
 	std::vector<int> monthDayCount;
 	Date(int, int, int);
 	Date(std::string);
 	Date();
-
+	bool isDateValid();
 	~Date();
 };
 

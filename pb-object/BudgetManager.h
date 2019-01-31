@@ -10,8 +10,10 @@ class BudgetManager
 {
 	std::vector<Income> incomes, expenses;
 	int loggedUserId;
+	int lastIncomeId, lastExpenseId;
 	BudgetFile budgetFile;
 	DateManager dateManager;
+
 	Income provideNewIncomeData();
 	Expense provideNewExpenseData();
 public:

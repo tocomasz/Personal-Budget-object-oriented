@@ -12,6 +12,8 @@ public:
 	void setDate(Date);
 	void setItem(std::string);
 	void setAmount(double);
+	void setIncomeId(int);
+	void setUserId(int);
 	~Income();
 };
 

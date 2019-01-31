@@ -21,6 +21,16 @@ void Income::setAmount(double newAmount)
 	amount = newAmount;
 }
 
+void Income::setIncomeId(int newId)
+{
+	incomeId = newId;
+}
+
+void Income::setUserId(int newId)
+{
+	userId = newId;
+}
+
 
 Income::~Income()
 {

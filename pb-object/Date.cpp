@@ -16,7 +16,11 @@ Date::Date(std::string dateAsString)
 	year = HelperClass::stringToInt(dateAsString.substr(0, yearEnd));
 	month = HelperClass::stringToInt(dateAsString.substr(yearEnd + 1, monthEnd));
 	day = HelperClass::stringToInt(dateAsString.substr(monthEnd + 1));
-	Date(year, month, day);
+	
+	if (isYearLeap())
+		monthDayCount = std::vector<int>{ 0,31,29,31,30,31,30,31,31,30,31,30,31 };
+	else
+		monthDayCount = std::vector<int>{ 0,31,28,31,30,31,30,31,31,30,31,30,31 };
 }
 
 Date::Date()
@@ -32,6 +36,16 @@ bool Date::isYearLeap()
 	else if (year % 100 != 0)
 		return true;
 	else if (year % 400 != 0)
+		return false;
+	else
+		return true;
+}
+
+bool Date::isDateValid()
+{
+	if (year < 2000 || month <= 0 || month > 12 || day <= 0)
+		return false;
+	else if (day > monthDayCount[month])
 		return false;
 	else
 		return true;
