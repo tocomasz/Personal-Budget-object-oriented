@@ -5,6 +5,8 @@ int main()
 	PersonalBudget pb("users.xml", "incomes.xml", "expenses.xml");
 	pb.logUserIn();
 	pb.addIncome();
+	pb.addIncome();
+	pb.addIncome();
 
 	
 }

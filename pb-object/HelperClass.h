@@ -19,6 +19,7 @@ public:
 	static std::string intToString(int);
 	static double stringToDouble(std::string);
 	static std::string replaceCommaWithDot(std::string);
+	static std::string doubleToString(double);
 	~HelperClass();
 };
 

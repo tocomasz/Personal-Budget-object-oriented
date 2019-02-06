@@ -4,15 +4,17 @@ BudgetManager::BudgetManager(std::string INCOMESFILENAME, std::string EXPENSESFI
 	:budgetFile(INCOMESFILENAME, EXPENSESFILENAME), loggedUserId(LOGGEDUSERID)
 {
 	lastExpenseId = lastIncomeId = 0;
-	//incomes = budgetFile.loadLoggedUserIncomesFromFile(loggedUserId);
+	incomes = budgetFile.loadLoggedUserIncomesFromFile(loggedUserId);
 	//expenses = budgetFile.loadLoggedUserExpensesFromFile(loggedUserId);
+	updateLastIncomeAndExpenseId();
+	//updateLastExpenseId();
 
 }
 
 Income BudgetManager::provideNewIncomeData()
 {
 	Income income;
-	income.setIncomeId(lastIncomeId++);
+	income.setIncomeId(++lastIncomeId);
 	income.setUserId(loggedUserId);
 
 	income.setDate(dateManager.pickDateMenu());
@@ -31,10 +33,16 @@ void BudgetManager::addNewIncomeRecord()
 	Income income = provideNewIncomeData();
 
 	incomes.push_back(income);
-	//budgetFile.saveIncomesToFile(incomes);
+	budgetFile.saveIncomeToFile(income, loggedUserId);
 
 	std::cout << std::endl << "Dodano przychod" << std::endl;
 	HelperClass::pauseProgram();
+}
+
+void BudgetManager::updateLastIncomeAndExpenseId()
+{
+	lastIncomeId = budgetFile.getLastIncomeIdFromFile();
+	//lastExpenseId = budgetFile.getLastExpenseIdFromFile();
 }
 
 BudgetManager::~BudgetManager()

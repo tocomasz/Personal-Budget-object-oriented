@@ -8,7 +8,9 @@ class Date
 	bool isYearLeap();
 public:
 	std::vector<int> monthDayCount;
-
+	int getYear();
+	int getMonth();
+	int getDay();
 	Date(int, int, int);
 	Date(std::string);
 	Date();

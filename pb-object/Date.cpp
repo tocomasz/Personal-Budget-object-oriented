@@ -28,6 +28,21 @@ Date::Date()
 {
 }
 
+int Date::getYear()
+{
+	return year;
+}
+
+int Date::getMonth()
+{
+	return month;
+}
+
+int Date::getDay()
+{
+	return day;
+}
+
 bool Date::isYearLeap()
 {
 	if (year % 4 != 0)

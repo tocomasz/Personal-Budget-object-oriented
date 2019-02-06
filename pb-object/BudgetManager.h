@@ -16,6 +16,8 @@ class BudgetManager
 
 	Income provideNewIncomeData();
 	Expense provideNewExpenseData();
+	void updateLastIncomeAndExpenseId();
+
 public:
 	BudgetManager(std::string, std::string, int);
 	void addNewIncomeRecord();

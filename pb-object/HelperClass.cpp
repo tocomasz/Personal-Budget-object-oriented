@@ -86,6 +86,14 @@ std::string HelperClass::replaceCommaWithDot(std::string stringWithCommas)
 	return stringWithCommas;
 }
 
+std::string HelperClass::doubleToString(double number)
+{
+	std::ostringstream ss;
+	ss << number;
+	std::string str = ss.str();
+	return str;
+}
+
 HelperClass::~HelperClass()
 {
 }

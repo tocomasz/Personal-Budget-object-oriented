@@ -29,6 +29,31 @@ void Income::setUserId(int newId)
 	userId = newId;
 }
 
+Date Income::getDate()
+{
+	return date;
+}
+
+std::string Income::getItem()
+{
+	return item;
+}
+
+double Income::getAmount()
+{
+	return amount;
+}
+
+int Income::getIncomeId()
+{
+	return incomeId;
+}
+
+int Income::getUserId()
+{
+	return userId;
+}
+
 Income::~Income()
 {
 }
