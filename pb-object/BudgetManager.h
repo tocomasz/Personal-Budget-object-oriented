@@ -8,7 +8,8 @@
 
 class BudgetManager
 {
-	std::vector<Income> incomes, expenses;
+	std::vector<Income> incomes;
+	std::vector<Expense> expenses;
 	int loggedUserId;
 	int lastIncomeId, lastExpenseId;
 	BudgetFile budgetFile;
@@ -21,6 +22,7 @@ class BudgetManager
 public:
 	BudgetManager(std::string, std::string, int);
 	void addNewIncomeRecord();
+	void addNewExpenseRecord();
 	~BudgetManager();
 };
 

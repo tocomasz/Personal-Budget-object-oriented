@@ -33,6 +33,33 @@ void BudgetFile::saveIncomeToFile(Income income, int loggedUserId)
 	xml.Save(incomesFileName);
 }
 
+void BudgetFile::saveExpenseToFile(Expense expense, int loggedUserId)
+{
+	CMarkup xml;
+	xml.Load(expensesFileName);
+	if (xml.FindElem("EXPENSES") == false)
+		xml.AddElem("EXPENSES");
+	else
+		xml.ResetMainPos();
+	xml.FindElem();
+	xml.IntoElem();
+	xml.AddElem("EXPENSE");
+	xml.SetAttrib("userId", expense.getUserId());
+	xml.IntoElem();
+	xml.AddElem("EXPENSEEID", expense.getExpenseId());
+	xml.AddElem("DATE");
+	xml.IntoElem();
+	xml.AddElem("YEAR", expense.getDate().getYear());
+	xml.AddElem("MONTH", expense.getDate().getMonth());
+	xml.AddElem("DAY", expense.getDate().getDay());
+	xml.OutOfElem();
+	xml.AddElem("ITEM", expense.getItem());
+	xml.AddElem("AMOUNT", HelperClass::doubleToString(expense.getAmount()));
+	xml.OutOfElem();
+
+	xml.Save(expensesFileName);
+}
+
 std::vector<Income> BudgetFile::loadLoggedUserIncomesFromFile(int loggedUserId)
 {
 	std::vector<Income> incomes;
@@ -75,6 +102,49 @@ std::vector<Income> BudgetFile::loadLoggedUserIncomesFromFile(int loggedUserId)
 	return incomes;
 }
 
+
+std::vector<Expense> BudgetFile::loadLoggedUserExpensesFromFile(int loggedUserId)
+{
+	std::vector<Expense> expenses;
+	CMarkup xml;
+	xml.Load(expensesFileName);
+	xml.FindElem();
+	xml.IntoElem();
+	while (xml.FindElem("EXPENSE"))
+	{
+		if (HelperClass::stringToInt(xml.GetAttrib("userId")) == loggedUserId)
+		{
+			Expense expense;
+			expense.setUserId(loggedUserId);
+
+			xml.IntoElem();
+			xml.FindElem("EXPENSEID");
+			expense.setExpenseId(HelperClass::stringToInt(xml.GetData()));
+
+			int year, month, day;
+			xml.FindElem("DATE");
+			xml.IntoElem();
+			xml.FindElem("YEAR");
+			year = HelperClass::stringToInt(xml.GetData());
+			xml.FindElem("MONTH");
+			month = HelperClass::stringToInt(xml.GetData());
+			xml.FindElem("DAY");
+			day = HelperClass::stringToInt(xml.GetData());
+			expense.setDate(Date(year, month, day));
+			xml.OutOfElem();
+
+			xml.FindElem("ITEM");
+			expense.setItem(xml.GetData());
+
+			xml.FindElem("AMOUNT");
+			expense.setAmount(HelperClass::stringToDouble(xml.GetData()));
+
+			expenses.push_back(expense);
+		}
+	}
+	return expenses;
+}
+
 int BudgetFile::getLastIncomeIdFromFile()
 {
 	CMarkup xml;
@@ -86,6 +156,20 @@ int BudgetFile::getLastIncomeIdFromFile()
 	}
 	xml.IntoElem();
 	xml.FindElem("INCOMEID");
+	return HelperClass::stringToInt(xml.GetData());
+}
+
+int BudgetFile::getLastExpenseIdFromFile()
+{
+	CMarkup xml;
+	xml.Load(expensesFileName);
+	xml.FindElem();
+	xml.IntoElem();
+	while (xml.FindElem())
+	{
+	}
+	xml.IntoElem();
+	xml.FindElem("EXPENSEID");
 	return HelperClass::stringToInt(xml.GetData());
 }
 

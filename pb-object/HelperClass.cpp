@@ -24,6 +24,8 @@ std::string HelperClass::convertStringToSentenceCase(std::string input)
 
 int HelperClass::stringToInt(std::string number)
 {
+	if (number == "")
+		return 0;
 	int intNumber;
 	std::istringstream iss(number);
 	iss >> intNumber;

@@ -5,9 +5,8 @@ BudgetManager::BudgetManager(std::string INCOMESFILENAME, std::string EXPENSESFI
 {
 	lastExpenseId = lastIncomeId = 0;
 	incomes = budgetFile.loadLoggedUserIncomesFromFile(loggedUserId);
-	//expenses = budgetFile.loadLoggedUserExpensesFromFile(loggedUserId);
+	expenses = budgetFile.loadLoggedUserExpensesFromFile(loggedUserId);
 	updateLastIncomeAndExpenseId();
-	//updateLastExpenseId();
 
 }
 
@@ -28,6 +27,23 @@ Income BudgetManager::provideNewIncomeData()
 	return income;
 }
 
+Expense BudgetManager::provideNewExpenseData()
+{
+	Expense expense;
+	expense.setExpenseId(++lastExpenseId);
+	expense.setUserId(loggedUserId);
+
+	expense.setDate(dateManager.pickDateMenu());
+
+	std::cout << "Wskaz czego dotyczy wydatek: " << std::endl;
+	expense.setItem(HelperClass::loadLine());
+
+	std::cout << "Podaj kwote:" << std::endl;
+	expense.setAmount(HelperClass::stringToDouble(HelperClass::loadLine()));
+
+	return expense;
+}
+
 void BudgetManager::addNewIncomeRecord()
 {
 	Income income = provideNewIncomeData();
@@ -39,10 +55,21 @@ void BudgetManager::addNewIncomeRecord()
 	HelperClass::pauseProgram();
 }
 
+void BudgetManager::addNewExpenseRecord()
+{
+	Expense expense = provideNewExpenseData();
+
+	expenses.push_back(expense);
+	budgetFile.saveExpenseToFile(expense, loggedUserId);
+
+	std::cout << std::endl << "Dodano wydatek" << std::endl;
+	HelperClass::pauseProgram();
+}
+
 void BudgetManager::updateLastIncomeAndExpenseId()
 {
 	lastIncomeId = budgetFile.getLastIncomeIdFromFile();
-	//lastExpenseId = budgetFile.getLastExpenseIdFromFile();
+	lastExpenseId = budgetFile.getLastExpenseIdFromFile();
 }
 
 BudgetManager::~BudgetManager()

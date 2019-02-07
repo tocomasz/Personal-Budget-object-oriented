@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include "Date.h"
+#include "Expense.h"
 #include "Income.h"
 #include "Markup.h"
 class BudgetFile
@@ -10,7 +11,9 @@ class BudgetFile
 public:
 	BudgetFile(std::string, std::string);
 	void saveIncomeToFile(Income, int);
+	void saveExpenseToFile(Expense, int);
 	std::vector<Income> loadLoggedUserIncomesFromFile(int);
+	std::vector<Expense> loadLoggedUserExpensesFromFile(int);
 	int getLastIncomeIdFromFile();
 	int getLastExpenseIdFromFile();
 	~BudgetFile();

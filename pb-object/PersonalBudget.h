@@ -14,6 +14,7 @@ public:
 	void changeUserPassword();
 	void logUserOut();
 	void addIncome();
+	void addExpense();
 	~PersonalBudget();
 };
 

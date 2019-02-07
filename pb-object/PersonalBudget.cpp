@@ -35,6 +35,11 @@ void PersonalBudget::addIncome()
 	budgetManager->addNewIncomeRecord();
 }
 
+void PersonalBudget::addExpense()
+{
+	budgetManager->addNewExpenseRecord();
+}
+
 PersonalBudget::~PersonalBudget()
 {
 	delete budgetManager;
