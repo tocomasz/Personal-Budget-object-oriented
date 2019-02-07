@@ -13,7 +13,6 @@ public:
 	UserFile(std::string);
 	void saveAllUsersToFile(std::vector<User>);
 	std::vector <User> loadUsersFromFile();
-	//void updateUserInFile(User);
 	~UserFile();
 };
 
