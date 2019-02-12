@@ -6,10 +6,13 @@
 class DateManager
 {
 	std::string loadDate();
-	std::string getCurrentDate();
+
 public:
 	DateManager();
 	Date pickDateMenu();
+	std::string getCurrentDate();
+	static bool isEarlierOrEqual(Date, Date);
+	static bool isEarlier(Date, Date);
 
 	~DateManager();
 };

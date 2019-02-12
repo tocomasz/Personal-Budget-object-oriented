@@ -11,7 +11,7 @@ public:
 	int getYear();
 	int getMonth();
 	int getDay();
-	Date(int, int, int);
+	Date(int year, int month, int day);
 	Date(std::string);
 	Date();
 	bool isDateValid();

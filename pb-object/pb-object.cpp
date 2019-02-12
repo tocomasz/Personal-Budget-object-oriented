@@ -4,8 +4,7 @@ int main()
 {
 	PersonalBudget pb("users.xml", "incomes.xml", "expenses.xml");
 	pb.logUserIn();
-	pb.addExpense();
 
-	
+	pb.showCurrentMonthBalance();
 }
 

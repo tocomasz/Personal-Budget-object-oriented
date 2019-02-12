@@ -53,6 +53,54 @@ std::string DateManager::getCurrentDate()
 	return currentDateAsString;
 }
 
+bool DateManager::isEarlierOrEqual(Date first, Date second)
+{
+	if (second.getYear() < first.getYear())
+		return false;
+	else if (second.getYear() > first.getYear())
+		return true;
+	else
+	{
+		if (second.getMonth() > first.getMonth())
+			return false;
+		else if (second.getMonth() < first.getMonth())
+			return true;
+		else
+		{
+			if (second.getDay() > first.getDay())
+				return true;
+			else if (second.getDay() < first.getDay())
+				return false;
+			else
+				return true;
+		}
+	}
+}
+
+bool DateManager::isEarlier(Date first, Date second)
+{
+	if (second.getYear() < first.getYear())
+		return false;
+	else if (second.getYear() > first.getYear())
+		return true;
+	else
+	{
+		if (second.getMonth() > first.getMonth())
+			return false;
+		else if (second.getMonth() < first.getMonth())
+			return true;
+		else
+		{
+			if (second.getDay() > first.getDay())
+				return true;
+			else if (second.getDay() < first.getDay())
+				return false;
+			else
+				return false;
+		}
+	}
+}
+
 DateManager::~DateManager()
 {
 }

@@ -72,6 +72,47 @@ void BudgetManager::updateLastIncomeAndExpenseId()
 	lastExpenseId = budgetFile.getLastExpenseIdFromFile();
 }
 
+void BudgetManager::printCurrentMonthBalance()
+{
+	system("cls");
+	//print headers
+	//create new temp sorted vector
+	std::vector<Income> tempIncomes = sortAndFilterByTime(incomes, Date(2019, 02, 01), Date(dateManager.getCurrentDate()));
+
+	//print all records
+	for (std::vector <Income>::iterator itr = tempIncomes.begin(), end = tempIncomes.end(); itr != end; itr++)
+	{
+		printIncome(*itr);
+	}
+	//print sum
+	HelperClass::pauseProgram();
+
+}
+void BudgetManager::printIncome(Income income)
+{
+	std::cout << income.getDate().getYear() <<"-" << income.getDate().getMonth() <<"-" << income.getDate().getDay() << "   ";
+	std::cout << income.getItem() << "   ";
+	std::cout << income.getAmount() << std::endl;
+}
+
+std::vector<Income> BudgetManager::sortAndFilterByTime(std::vector<Income> inputVector, Date startingDay, Date endDay)
+{
+	std::vector<Income> outputVector;
+	for (std::vector <Income>::iterator itr = inputVector.begin(), end = inputVector.end(); itr != end; itr++)
+	{
+		if (dateManager.isEarlierOrEqual(startingDay, itr->getDate()) && dateManager.isEarlierOrEqual(itr->getDate(), endDay))
+			outputVector.push_back(*itr);
+	}
+	std::sort(outputVector.begin(), outputVector.end(), compareIncomesByDate);
+	return outputVector;
+}
+
+bool BudgetManager::compareIncomesByDate(Income first, Income second)
+{
+	return DateManager::isEarlier(first.getDate(), second.getDate());
+}
+
+
 BudgetManager::~BudgetManager()
 {
 }

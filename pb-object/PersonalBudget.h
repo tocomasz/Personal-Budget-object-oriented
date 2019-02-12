@@ -15,6 +15,7 @@ public:
 	void logUserOut();
 	void addIncome();
 	void addExpense();
+	void showCurrentMonthBalance();
 	~PersonalBudget();
 };
 
