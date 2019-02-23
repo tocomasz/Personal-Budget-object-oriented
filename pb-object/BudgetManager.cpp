@@ -113,22 +113,30 @@ void BudgetManager::printBalanceFromDateToDate(Date startingDate, Date endingDat
 	std::vector<Income> tempIncomes = sortAndFilterByTime(incomes, startingDate, endingDate);
 	std::vector<Expense> tempExpenses = sortAndFilterByTime(expenses, startingDate, endingDate);
 
+	double sum = 0, sumIncomes = 0, sumExpenses = 0;
+
+
 	std::cout << "Wybrany przedzial czasowy: od " << startingDate.getDateAsString() << " do " << endingDate.getDateAsString() << std::endl;
 	std::cout << "Zestawienie przychodow: " << std::endl;
 	printHeaderRow();
 	for (std::vector <Income>::iterator itr = tempIncomes.begin(), end = tempIncomes.end(); itr != end; itr++)
 	{
 		printRecord(*itr);
+		sumIncomes += itr->getAmount();
 	}
+	std::cout<< std::setw(32) << std::right << "SUMA: " << sumIncomes << std::endl;
 
 	std::cout << std::endl << "Zestawienie wydatkow: " << std::endl;
 	printHeaderRow();
 	for (std::vector <Expense>::iterator itr = tempExpenses.begin(), end = tempExpenses.end(); itr != end; itr++)
 	{
 		printRecord(*itr);
+		sumExpenses += itr->getAmount();
 	}
-	std::cout << std::endl;
-	calculateAndPrintSum(tempIncomes, tempExpenses);
+	std::cout << std::setw(32) << std::right << "SUMA: " << sumExpenses << std::endl;
+
+	sum = sumIncomes - sumExpenses;
+	std::cout << std::endl << "W wybranym okresie zanotowano " << ((sum >0) ? "nadwyzke" : "deficyt") << " o wartosci: " << sum << std::endl;
 }
 void BudgetManager::printRecord(Income income)
 {
@@ -152,15 +160,15 @@ void BudgetManager::printHeaderRow()
 
 void BudgetManager::calculateAndPrintSum(std::vector<Income> incomeRecords, std::vector<Expense> expenseRecords)
 {
-	double sum = 0;
+	double sum = 0, sumIncomes = 0, sumExpenses = 0;
 	for (std::vector <Income>::iterator itr = incomeRecords.begin(), end = incomeRecords.end(); itr != end; itr++)
 	{
-		sum += itr->getAmount();
+		sumIncomes += itr->getAmount();
 	}
 
 	for (std::vector <Expense>::iterator itr = expenseRecords.begin(), end = expenseRecords.end(); itr != end; itr++)
 	{
-		sum -= itr->getAmount();
+		sumExpenses -= itr->getAmount();
 	}
 
 	std::cout << std::endl<< std::setw(31) << std::right << "SUMA: " << sum << std::endl;

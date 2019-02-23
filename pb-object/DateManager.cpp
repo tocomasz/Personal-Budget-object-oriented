@@ -17,7 +17,7 @@ Date DateManager::pickDateMenu()
 		switch (ch)
 		{
 		case '1':
-			dateAsString = getCurrentDate();
+			return getCurrentDate();
 			break;
 		case '2':
 			dateAsString = loadDate();
@@ -36,20 +36,19 @@ Date DateManager::pickDateMenu()
 
 std::string DateManager::loadDate()
 {
-	std::cout << "Wprowadz date w formacie RRRR-MM-DD: " << std::endl;
+	std::cout << "Wprowadz date w formacie RRRR-MM-DD, znajdujaca sie w przedziale od 2000-1-1 do ostatniego dnia biezacego miesiaca: " << std::endl;
 	std::string dateAsString = HelperClass::loadLine();
 	return dateAsString;
 }
 
-std::string DateManager::getCurrentDate()
+Date DateManager::getCurrentDate()
 {
 	time_t t = time(0);
 	tm now;
 	auto ptr = &now;
 	time(&t);
 	localtime_s(ptr, &t);
-	std::string currentDateAsString = HelperClass::intToString(now.tm_year + 1900) + '-' + HelperClass::intToString(now.tm_mon + 1) + '-' + HelperClass::intToString(now.tm_mday);
-	return currentDateAsString;
+	return Date((now.tm_year + 1900), (now.tm_mon + 1), (now.tm_mday));
 }
 
 bool DateManager::isEarlierOrEqual(Date first, Date second)

@@ -10,7 +10,7 @@ class DateManager
 public:
 	DateManager();
 	Date pickDateMenu();
-	std::string getCurrentDate();
+	Date getCurrentDate();
 	static bool isEarlierOrEqual(Date, Date);
 	static bool isEarlier(Date, Date);
 	Date getFirstDayOfPreviousMonth();
