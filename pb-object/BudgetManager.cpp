@@ -102,7 +102,7 @@ void BudgetManager::printCustomPeriodBalance()
 	std::cout << "Wybierz date poczatkowa: " << std::endl;
 	Date startingDate = dateManager.pickDateMenu();
 
-	std::cout << "Wybierz date koncowa: " << std::endl;
+	std::cout << std::endl << "Wybierz date koncowa: " << std::endl;
 	Date endingDate = dateManager.pickDateMenu();
 
 	printBalanceFromDateToDate(startingDate, endingDate);
@@ -115,7 +115,7 @@ void BudgetManager::printBalanceFromDateToDate(Date startingDate, Date endingDat
 
 	double sum = 0, sumIncomes = 0, sumExpenses = 0;
 
-
+	system("cls");
 	std::cout << "Wybrany przedzial czasowy: od " << startingDate.getDateAsString() << " do " << endingDate.getDateAsString() << std::endl;
 	std::cout << "Zestawienie przychodow: " << std::endl;
 	printHeaderRow();

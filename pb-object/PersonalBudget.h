@@ -9,6 +9,7 @@ class PersonalBudget
 	BudgetManager *budgetManager;
 public:
 	PersonalBudget(std::string, std::string, std::string);
+	int getLoggedUserId();
 	void registerUser();
 	void logUserIn();
 	void changeUserPassword();
@@ -16,6 +17,8 @@ public:
 	void addIncome();
 	void addExpense();
 	void showCurrentMonthBalance();
+	void showLastMonthBalance();
+	void showCustomPeriodBalance();
 	~PersonalBudget();
 };
 

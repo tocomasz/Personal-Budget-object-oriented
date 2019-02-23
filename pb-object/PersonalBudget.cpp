@@ -6,6 +6,11 @@ PersonalBudget::PersonalBudget(std::string USERSFILENAME, std::string INCOMESFIL
 	budgetManager = NULL;
 }
 
+int PersonalBudget::getLoggedUserId()
+{
+	return userManager.getLoggedUserId();
+}
+
 void PersonalBudget::registerUser()
 {
 	userManager.registerUser();
@@ -43,6 +48,16 @@ void PersonalBudget::addExpense()
 void PersonalBudget::showCurrentMonthBalance()
 {
 	budgetManager->printCurrentMonthBalance();
+}
+
+void PersonalBudget::showLastMonthBalance()
+{
+	budgetManager->printLastMonthBalance();
+}
+
+void PersonalBudget::showCustomPeriodBalance()
+{
+	budgetManager->printCustomPeriodBalance();
 }
 
 PersonalBudget::~PersonalBudget()
