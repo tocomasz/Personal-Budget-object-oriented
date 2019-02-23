@@ -76,7 +76,7 @@ void UserManager::logUserIn()
 {
 	std::string login = "", password = "";
 
-	std::cout << std::endl << "Podaj login: ";
+	std::cout << "Podaj login: ";
 	getline(std::cin, login);
 
 	std::vector <User>::iterator itr = users.begin(), end = users.end();

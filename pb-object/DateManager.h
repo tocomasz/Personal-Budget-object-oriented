@@ -13,6 +13,7 @@ public:
 	std::string getCurrentDate();
 	static bool isEarlierOrEqual(Date, Date);
 	static bool isEarlier(Date, Date);
+	Date getFirstDayOfPreviousMonth();
 
 	~DateManager();
 };

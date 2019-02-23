@@ -1,6 +1,7 @@
 #pragma once
 
 #include <algorithm>
+#include <iomanip>
 #include <vector>
 #include "BudgetFile.h"
 #include "DateManager.h"
@@ -21,14 +22,22 @@ class BudgetManager
 	Expense provideNewExpenseData();
 	void updateLastIncomeAndExpenseId();
 	std::vector<Income> sortAndFilterByTime(std::vector<Income>, Date, Date);
-	void printIncome(Income);
+	std::vector<Expense> sortAndFilterByTime(std::vector<Expense>, Date, Date);
+	void printRecord(Income);
+	void printRecord(Expense);
+	void printHeaderRow();
+	void calculateAndPrintSum(std::vector<Income>, std::vector<Expense>);
+	void printBalanceFromDateToDate(Date, Date);
 
 public:
 	BudgetManager(std::string, std::string, int);
 	void addNewIncomeRecord();
 	void addNewExpenseRecord();
 	void printCurrentMonthBalance();
+	void printLastMonthBalance();
+	void printCustomPeriodBalance();
 	static bool compareIncomesByDate(Income, Income);
+	static bool compareExpensesByDate(Expense, Expense);
 	~BudgetManager();
 };
 

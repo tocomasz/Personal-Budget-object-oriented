@@ -10,7 +10,6 @@ Date DateManager::pickDateMenu()
 {	
 	while (true)
 	{
-		std::cout << "Wybierz date przychodu/wydatku: " << std::endl;
 		std::cout << "1. Dzisiaj" << std::endl;
 		std::cout << "2. Wybierz inna date" << std::endl;
 		char ch = HelperClass::loadCharacter();
@@ -99,6 +98,22 @@ bool DateManager::isEarlier(Date first, Date second)
 				return false;
 		}
 	}
+}
+
+Date DateManager::getFirstDayOfPreviousMonth()
+{
+	Date currentDate = getCurrentDate();
+	int lastMonth = 0;
+	int lastYear = currentDate.getYear();
+	if (currentDate.getMonth() == 1)
+	{
+		lastYear--;
+		lastMonth = 12;
+	}
+	else
+		lastMonth = currentDate.getMonth() - 1;
+
+	return Date(lastYear, lastMonth, 1);
 }
 
 DateManager::~DateManager()
