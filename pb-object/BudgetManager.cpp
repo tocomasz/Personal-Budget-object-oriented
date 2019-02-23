@@ -7,7 +7,6 @@ BudgetManager::BudgetManager(std::string INCOMESFILENAME, std::string EXPENSESFI
 	incomes = budgetFile.loadLoggedUserIncomesFromFile(loggedUserId);
 	expenses = budgetFile.loadLoggedUserExpensesFromFile(loggedUserId);
 	updateLastIncomeAndExpenseId();
-
 }
 
 Income BudgetManager::provideNewIncomeData()
@@ -102,21 +101,29 @@ void BudgetManager::printCustomPeriodBalance()
 	std::cout << "Wybierz date poczatkowa: " << std::endl;
 	Date startingDate = dateManager.pickDateMenu();
 
-	std::cout << "Wybierz date koncowa: " << std::endl;
+	std::cout << std::endl << "Wybierz date koncowa: " << std::endl;
 	Date endingDate = dateManager.pickDateMenu();
 
 	printBalanceFromDateToDate(startingDate, endingDate);
 	HelperClass::pauseProgram();
 }
+
 void BudgetManager::printBalanceFromDateToDate(Date startingDate, Date endingDate)
 {
 	std::vector<Income> tempIncomes = sortAndFilterByTime(incomes, startingDate, endingDate);
 	std::vector<Expense> tempExpenses = sortAndFilterByTime(expenses, startingDate, endingDate);
+	if (tempIncomes.empty() && tempExpenses.empty())
+	{
+		system("cls");
+		std::cout << "Wybrany przedzial czasowy: od " << startingDate.getDateAsString() << " do " << endingDate.getDateAsString() << std::endl << std::endl;
+		std::cout << "Nie znaleziono przychodow i wydatkow w wybranym przedziale czasowym" << std::endl;
+		return;
+	}
 
 	double sum = 0, sumIncomes = 0, sumExpenses = 0;
 
-
-	std::cout << "Wybrany przedzial czasowy: od " << startingDate.getDateAsString() << " do " << endingDate.getDateAsString() << std::endl;
+	system("cls");
+	std::cout << "Wybrany przedzial czasowy: od " << startingDate.getDateAsString() << " do " << endingDate.getDateAsString() << std::endl << std::endl;
 	std::cout << "Zestawienie przychodow: " << std::endl;
 	printHeaderRow();
 	for (std::vector <Income>::iterator itr = tempIncomes.begin(), end = tempIncomes.end(); itr != end; itr++)
@@ -138,12 +145,14 @@ void BudgetManager::printBalanceFromDateToDate(Date startingDate, Date endingDat
 	sum = sumIncomes - sumExpenses;
 	std::cout << std::endl << "W wybranym okresie zanotowano " << ((sum >0) ? "nadwyzke" : "deficyt") << " o wartosci: " << sum << std::endl;
 }
+
 void BudgetManager::printRecord(Income income)
 {
 	std::cout << std::setw(12) << std::left << income.getDate().getDateAsString();
 	std::cout << std::setw(20) << std::left << income.getItem();
 	std::cout << std::setw(10) << std::left << income.getAmount() << std::endl;
 }
+
 void BudgetManager::printRecord(Expense expense)
 {
 	std::cout << std::setw(12) << std::left << expense.getDate().getDateAsString();

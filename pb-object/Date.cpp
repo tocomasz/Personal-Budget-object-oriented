@@ -8,6 +8,7 @@ Date::Date(int YEAR, int MONTH, int DAY)
 	else
 		monthDayCount = std::vector<int>{ 0,31,28,31,30,31,30,31,31,30,31,30,31 };
 }
+
 Date::Date(std::string dateAsString)
 {
 	size_t yearEnd = dateAsString.find('-');
@@ -69,7 +70,6 @@ bool Date::isDateValid()
 	else
 		return true;
 }
-
 
 Date::~Date()
 {
