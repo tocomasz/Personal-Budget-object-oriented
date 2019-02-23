@@ -54,7 +54,6 @@ int Expense::getUserId()
 	return userId;
 }
 
-
 Expense::~Expense()
 {
 }

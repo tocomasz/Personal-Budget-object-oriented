@@ -1,7 +1,5 @@
 #include "DateManager.h"
 
-
-
 DateManager::DateManager()
 {
 }
@@ -53,26 +51,10 @@ Date DateManager::getCurrentDate()
 
 bool DateManager::isEarlierOrEqual(Date first, Date second)
 {
-	if (second.getYear() < first.getYear())
-		return false;
-	else if (second.getYear() > first.getYear())
+	if (first.getYear() == second.getYear() && first.getMonth() == second.getMonth() && first.getDay() == second.getDay())
 		return true;
 	else
-	{
-		if (second.getMonth() > first.getMonth())
-			return false;
-		else if (second.getMonth() < first.getMonth())
-			return true;
-		else
-		{
-			if (second.getDay() > first.getDay())
-				return true;
-			else if (second.getDay() < first.getDay())
-				return false;
-			else
-				return true;
-		}
-	}
+		return isEarlier(first, second);
 }
 
 bool DateManager::isEarlier(Date first, Date second)
@@ -102,17 +84,17 @@ bool DateManager::isEarlier(Date first, Date second)
 Date DateManager::getFirstDayOfPreviousMonth()
 {
 	Date currentDate = getCurrentDate();
-	int lastMonth = 0;
-	int lastYear = currentDate.getYear();
+	int previousMonth = 0;
+	int year = currentDate.getYear();
 	if (currentDate.getMonth() == 1)
 	{
-		lastYear--;
-		lastMonth = 12;
+		year--;
+		previousMonth = 12;
 	}
 	else
-		lastMonth = currentDate.getMonth() - 1;
+		previousMonth = currentDate.getMonth() - 1;
 
-	return Date(lastYear, lastMonth, 1);
+	return Date(year, previousMonth, 1);
 }
 
 DateManager::~DateManager()

@@ -102,7 +102,6 @@ std::vector<Income> BudgetFile::loadLoggedUserIncomesFromFile(int loggedUserId)
 	return incomes;
 }
 
-
 std::vector<Expense> BudgetFile::loadLoggedUserExpensesFromFile(int loggedUserId)
 {
 	std::vector<Expense> expenses;
@@ -151,9 +150,7 @@ int BudgetFile::getLastIncomeIdFromFile()
 	xml.Load(incomesFileName);
 	xml.FindElem();
 	xml.IntoElem();
-	while (xml.FindElem())
-	{
-	}
+	while (xml.FindElem());
 	xml.IntoElem();
 	xml.FindElem("INCOMEID");
 	return HelperClass::stringToInt(xml.GetData());
@@ -165,9 +162,7 @@ int BudgetFile::getLastExpenseIdFromFile()
 	xml.Load(expensesFileName);
 	xml.FindElem();
 	xml.IntoElem();
-	while (xml.FindElem())
-	{
-	}
+	while (xml.FindElem());
 	xml.IntoElem();
 	xml.FindElem("EXPENSEID");
 	return HelperClass::stringToInt(xml.GetData());

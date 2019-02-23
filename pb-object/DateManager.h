@@ -9,12 +9,13 @@ class DateManager
 
 public:
 	DateManager();
+
 	Date pickDateMenu();
 	Date getCurrentDate();
+	Date getFirstDayOfPreviousMonth();
 	static bool isEarlierOrEqual(Date, Date);
 	static bool isEarlier(Date, Date);
-	Date getFirstDayOfPreviousMonth();
-
+	
 	~DateManager();
 };
 
