@@ -95,7 +95,7 @@ std::vector<Income> BudgetFile::loadLoggedUserIncomesFromFile(int loggedUserId)
 
 			xml.FindElem("AMOUNT");
 			income.setAmount(HelperClass::stringToDouble(xml.GetData()));
-
+			xml.OutOfElem();
 			incomes.push_back(income);
 		}
 	}
@@ -138,7 +138,7 @@ std::vector<Expense> BudgetFile::loadLoggedUserExpensesFromFile(int loggedUserId
 
 			xml.FindElem("AMOUNT");
 			expense.setAmount(HelperClass::stringToDouble(xml.GetData()));
-
+			xml.OutOfElem();
 			expenses.push_back(expense);
 		}
 	}

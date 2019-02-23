@@ -43,6 +43,11 @@ int Date::getDay()
 	return day;
 }
 
+std::string Date::getDateAsString()
+{
+	return HelperClass::intToString(year) + "-" + HelperClass::intToString(month) + "-" + HelperClass::intToString(day);
+}
+
 bool Date::isYearLeap()
 {
 	if (year % 4 != 0)

@@ -40,6 +40,11 @@ void PersonalBudget::addExpense()
 	budgetManager->addNewExpenseRecord();
 }
 
+void PersonalBudget::showCurrentMonthBalance()
+{
+	budgetManager->printCurrentMonthBalance();
+}
+
 PersonalBudget::~PersonalBudget()
 {
 	delete budgetManager;
