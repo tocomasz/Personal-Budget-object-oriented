@@ -42,11 +42,10 @@ std::string DateManager::loadDate()
 Date DateManager::getCurrentDate()
 {
 	time_t t = time(0);
-	tm now;
-	auto ptr = &now;
+	tm *now;
 	time(&t);
-	localtime_s(ptr, &t);
-	return Date((now.tm_year + 1900), (now.tm_mon + 1), (now.tm_mday));
+	now = localtime(&t);
+	return Date((now->tm_year + 1900), (now->tm_mon + 1), (now->tm_mday));
 }
 
 bool DateManager::isEarlierOrEqual(Date first, Date second)
